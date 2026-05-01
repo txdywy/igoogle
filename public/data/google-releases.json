@@ -1,0 +1,870 @@
+{
+  "generatedAt": "2026-05-01T10:54:47.609Z",
+  "summary": {
+    "healthySources": 17,
+    "totalSources": 17,
+    "chromeStablePlatforms": 5,
+    "chromeOsBoards": 124,
+    "latestChrome": "148.0.7778.97",
+    "latestAndroidPatch": "2026-04-05"
+  },
+  "sources": {
+    "chromiumDash": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=",
+    "chromeVersionHistory": "https://versionhistory.googleapis.com/v1/chrome/platforms/{platform}/channels/stable/versions",
+    "chromeOsServing": "https://chromiumdash.appspot.com/cros/fetch_serving_builds",
+    "androidOta": "https://developers.google.com/android/ota",
+    "androidFactoryImages": "https://developers.google.com/android/images",
+    "androidSecurity": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en",
+    "androidSdkRepository": "https://dl.google.com/android/repository/repository2-1.xml",
+    "chromeRss": "https://chromereleases.googleblog.com/feeds/posts/default",
+    "androidDevelopersRss": "https://android-developers.googleblog.com/feeds/posts/default"
+  },
+  "chrome": {
+    "rows": [
+      {
+        "platform": "Windows",
+        "channel": "Stable",
+        "version": "148.0.7778.97",
+        "previousVersion": "148.0.7778.96",
+        "milestone": 148,
+        "branchPosition": 1610480,
+        "publishedAt": "2026-04-29T18:10:38.459Z",
+        "corroboratedByVersionHistory": true,
+        "sourceUrl": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Windows"
+      },
+      {
+        "platform": "macOS",
+        "channel": "Stable",
+        "version": "148.0.7778.97",
+        "previousVersion": "148.0.7778.96",
+        "milestone": 148,
+        "branchPosition": 1610480,
+        "publishedAt": "2026-04-29T18:10:39.655Z",
+        "corroboratedByVersionHistory": true,
+        "sourceUrl": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Mac"
+      },
+      {
+        "platform": "Linux",
+        "channel": "Stable",
+        "version": "147.0.7727.137",
+        "previousVersion": "147.0.7727.116",
+        "milestone": 147,
+        "branchPosition": 1596535,
+        "publishedAt": "2026-04-28T19:52:20.319Z",
+        "corroboratedByVersionHistory": true,
+        "sourceUrl": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Linux"
+      },
+      {
+        "platform": "Android",
+        "channel": "Stable",
+        "version": "148.0.7778.96",
+        "previousVersion": "148.0.7778.60",
+        "milestone": 148,
+        "branchPosition": 1610480,
+        "publishedAt": "2026-04-29T16:57:25.581Z",
+        "corroboratedByVersionHistory": true,
+        "sourceUrl": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Android"
+      },
+      {
+        "platform": "iOS",
+        "channel": "Stable",
+        "version": "148.0.7778.100",
+        "previousVersion": "148.0.7778.47",
+        "milestone": 148,
+        "branchPosition": 1610480,
+        "publishedAt": "2026-04-29T18:03:50.516Z",
+        "corroboratedByVersionHistory": true,
+        "sourceUrl": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=iOS"
+      }
+    ],
+    "health": [
+      {
+        "name": "Chromium Dash Windows",
+        "kind": "json",
+        "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Windows",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.072Z"
+      },
+      {
+        "name": "VersionHistory Windows",
+        "kind": "json",
+        "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/win/channels/stable/versions",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.073Z"
+      },
+      {
+        "name": "Chromium Dash macOS",
+        "kind": "json",
+        "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Mac",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.414Z"
+      },
+      {
+        "name": "VersionHistory macOS",
+        "kind": "json",
+        "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/mac/channels/stable/versions",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.414Z"
+      },
+      {
+        "name": "Chromium Dash Linux",
+        "kind": "json",
+        "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Linux",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.775Z"
+      },
+      {
+        "name": "VersionHistory Linux",
+        "kind": "json",
+        "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/linux/channels/stable/versions",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.775Z"
+      },
+      {
+        "name": "Chromium Dash Android",
+        "kind": "json",
+        "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Android",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.199Z"
+      },
+      {
+        "name": "VersionHistory Android",
+        "kind": "json",
+        "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/android/channels/stable/versions",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.199Z"
+      },
+      {
+        "name": "Chromium Dash iOS",
+        "kind": "json",
+        "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=iOS",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.579Z"
+      },
+      {
+        "name": "VersionHistory iOS",
+        "kind": "json",
+        "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/ios/channels/stable/versions",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.579Z"
+      }
+    ]
+  },
+  "chromeOs": {
+    "rows": [
+      {
+        "board": "veyron-fievel",
+        "brand": "AOpen Chromebox Mini",
+        "formFactor": "Chromebox",
+        "aue": true,
+        "milestone": "M56",
+        "chromeVersion": "98.0.4758.107",
+        "osVersion": "14388.62.1",
+        "betaVersion": "14388.44.0"
+      },
+      {
+        "board": "veyron-tiger",
+        "brand": "AOpen Chromebase Mini",
+        "formFactor": "Chromebase",
+        "aue": true,
+        "milestone": "M56",
+        "chromeVersion": "98.0.4758.107",
+        "osVersion": "14388.61.0",
+        "betaVersion": "14388.44.0"
+      },
+      {
+        "board": "banjo",
+        "brand": "Acer Chromebook 15 (CB3-531)",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M42",
+        "chromeVersion": "93.0.4577.95",
+        "osVersion": "14092.66.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "kip",
+        "brand": "HP Chromebook 14 G4",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M36",
+        "chromeVersion": "93.0.4577.95",
+        "osVersion": "14092.66.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "enguarde",
+        "brand": "eduGear Chromebook R",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M35",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "expresso",
+        "brand": "HEXA Chromebook Pi",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M36",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "gnawty",
+        "brand": "Acer Chromebook 11 (CB3-131, C735)",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M36",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "heli",
+        "brand": "Haier Chromebook 11 G2",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M45",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "ninja",
+        "brand": "AOpen Chromebox Commercial",
+        "formFactor": "Chromebox",
+        "aue": true,
+        "milestone": "M44",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "orco",
+        "brand": "Lenovo 100S Chromebook",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M44",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "sumo",
+        "brand": "AOpen Chromebase Commercial",
+        "formFactor": "Chromebase",
+        "aue": true,
+        "milestone": "M44",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "winky",
+        "brand": "Samsung Chromebook 2 11\" - XE500C12",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M37",
+        "chromeVersion": "92.0.4515.162",
+        "osVersion": "13982.88.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "candy",
+        "brand": "Dell Chromebook 11 (3120)",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M39",
+        "chromeVersion": "92.0.4515.157",
+        "osVersion": "13982.82.0",
+        "betaVersion": "14092.46.0"
+      },
+      {
+        "board": "swanky",
+        "brand": "Toshiba Chromebook 2",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M36",
+        "chromeVersion": "92.0.4515.157",
+        "osVersion": "13982.82.0",
+        "betaVersion": "14092.28.0"
+      },
+      {
+        "board": "auron-paine",
+        "brand": "Acer Chromebook 11 (C740)",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M40",
+        "chromeVersion": "91.0.4472.167",
+        "osVersion": "13904.97.0",
+        "betaVersion": "13904.41.0"
+      },
+      {
+        "board": "auron-yuna",
+        "brand": "Acer Chromebook 15 (CB5-571, C910)",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M40",
+        "chromeVersion": "91.0.4472.167",
+        "osVersion": "13904.97.0",
+        "betaVersion": "13904.41.0"
+      },
+      {
+        "board": "buddy",
+        "brand": "Acer Chromebase 24",
+        "formFactor": "Chromebase",
+        "aue": true,
+        "milestone": "M48",
+        "chromeVersion": "91.0.4472.167",
+        "osVersion": "13904.97.0",
+        "betaVersion": "13904.41.0"
+      },
+      {
+        "board": "gandof",
+        "brand": "Toshiba Chromebook 2 (2015 Edition)",
+        "formFactor": "Chromebook - Clamshell",
+        "aue": true,
+        "milestone": "M44",
+        "chromeVersion": "91.0.4472.167",
+        "osVersion": "13904.97.0",
+        "betaVersion": "13904.41.0"
+      }
+    ],
+    "totalBoards": 124,
+    "health": [
+      {
+        "name": "ChromeOS serving builds",
+        "kind": "json",
+        "url": "https://chromiumdash.appspot.com/cros/fetch_serving_builds",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.413Z"
+      }
+    ]
+  },
+  "android": {
+    "pageFingerprints": [
+      {
+        "name": "Pixel OTA images",
+        "url": "https://developers.google.com/android/ota",
+        "title": "Full OTA Images for Nexus and Pixel Devices &nbsp;|&nbsp; Google Play services &nbsp;|&nbsp; Google for Developers",
+        "lastUpdated": "2026-04-07",
+        "sha256": "dd13f8dc0689764e",
+        "bytes": 68132
+      },
+      {
+        "name": "Pixel factory images",
+        "url": "https://developers.google.com/android/images",
+        "title": "Nexus 和 Pixel 设备的出厂映像 &nbsp;|&nbsp; Google Play services &nbsp;|&nbsp; Google for Developers",
+        "lastUpdated": null,
+        "sha256": "8296742e9221a558",
+        "bytes": 68310
+      }
+    ],
+    "securityBulletins": [
+      {
+        "bulletin": "April 2026",
+        "publishedDate": "April 6, 2026",
+        "patchLevels": [
+          "2026-04-01",
+          "2026-04-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      },
+      {
+        "bulletin": "March 2026",
+        "publishedDate": "March 2, 2026",
+        "patchLevels": [
+          "2026-03-01",
+          "2026-03-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      },
+      {
+        "bulletin": "February 2026",
+        "publishedDate": "February 2, 2026",
+        "patchLevels": [
+          "2026-02-01",
+          "2026-02-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      },
+      {
+        "bulletin": "January 2026",
+        "publishedDate": "January 5, 2026",
+        "patchLevels": [
+          "2026-01-01",
+          "2026-01-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      },
+      {
+        "bulletin": "December 2025",
+        "publishedDate": "December 2, 2025",
+        "patchLevels": [
+          "2025-12-01",
+          "2025-12-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      },
+      {
+        "bulletin": "November 2025",
+        "publishedDate": "November 3, 2025",
+        "patchLevels": [
+          "2025-11-01",
+          "2025-11-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      },
+      {
+        "bulletin": "October 2025",
+        "publishedDate": "October 6, 2025",
+        "patchLevels": [
+          "2025-10-01",
+          "2025-10-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      },
+      {
+        "bulletin": "September 2025",
+        "publishedDate": "September 2, 2025",
+        "patchLevels": [
+          "2025-09-01",
+          "2025-09-05"
+        ],
+        "sourceUrl": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en"
+      }
+    ],
+    "health": [
+      {
+        "name": "Pixel OTA page",
+        "kind": "html",
+        "url": "https://developers.google.com/android/ota",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.581Z"
+      },
+      {
+        "name": "Pixel factory images page",
+        "kind": "html",
+        "url": "https://developers.google.com/android/images",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.581Z"
+      },
+      {
+        "name": "Android Security Bulletin",
+        "kind": "html",
+        "url": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.581Z"
+      }
+    ]
+  },
+  "sdk": {
+    "rows": [
+      {
+        "path": "platform-tools",
+        "displayName": "Android SDK Platform-Tools",
+        "revision": "37.0.0",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "cmdline-tools;latest",
+        "displayName": "Android SDK Command-line Tools (latest)",
+        "revision": "20.0",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "emulator",
+        "displayName": "Android Emulator",
+        "revision": "36.6.6",
+        "channel": "Preview",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "emulator",
+        "displayName": "Android Emulator",
+        "revision": "36.5.11",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-36",
+        "displayName": "Android SDK Platform 36-ext19",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-36",
+        "displayName": "Android SDK Platform 36-ext18",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-36",
+        "displayName": "Android SDK Platform 36",
+        "revision": "2",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-35",
+        "displayName": "Android SDK Platform 35-ext15",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-35",
+        "displayName": "Android SDK Platform 35-ext14",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-35",
+        "displayName": "Android SDK Platform 35",
+        "revision": "2",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-34",
+        "displayName": "Android SDK Platform 34-ext12",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-34",
+        "displayName": "Android SDK Platform 34-ext11",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-34",
+        "displayName": "Android SDK Platform 34-ext10",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-34",
+        "displayName": "Android SDK Platform 34-ext8",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-34",
+        "displayName": "Android SDK Platform 34",
+        "revision": "3",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      },
+      {
+        "path": "platforms;android-33",
+        "displayName": "Android SDK Platform 33-ext5",
+        "revision": "1",
+        "channel": "Stable",
+        "sourceUrl": "https://dl.google.com/android/repository/repository2-1.xml"
+      }
+    ],
+    "health": [
+      {
+        "name": "Android SDK repository XML",
+        "kind": "xml",
+        "url": "https://dl.google.com/android/repository/repository2-1.xml",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:46.860Z"
+      }
+    ]
+  },
+  "rss": {
+    "entries": [
+      {
+        "title": "Chrome Dev for Android Update",
+        "updated": "2026-04-30T08:43:32.344-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/5726371225085010172/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Chrome Dev for Desktop Update",
+        "updated": "2026-04-30T07:58:33.185-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/844265524333782933/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Long Term Support Channel Update for ChromeOS",
+        "updated": "2026-04-29T14:04:47.225-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/6404778624341518236/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Early Stable Update for Desktop",
+        "updated": "2026-04-29T11:15:41.628-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/6322477671825456857/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Chrome Beta for iOS Update",
+        "updated": "2026-04-29T11:13:33.500-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/8334461638911627570/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Chrome Stable for iOS Update",
+        "updated": "2026-04-29T11:13:32.531-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/1132862843043349772/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Chrome for Android Update",
+        "updated": "2026-04-29T10:23:41.950-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/1957922317859965731/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Chrome Beta for Desktop Update",
+        "updated": "2026-04-29T09:43:33.292-07:00",
+        "url": "http://chromereleases.googleblog.com/feeds/3973644534834953083/comments/default",
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Boosting user privacy and business protection with updated Play policies",
+        "updated": "2026-04-29T06:49:39.066-07:00",
+        "url": "https://android-developers.googleblog.com/2026/04/giving-users-clearer-choice-and-everyone-a-safer-more-trusted-app-ecosystem.html",
+        "sourceUrl": "https://android-developers.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "What&#39;s new in the Jetpack Compose April &#39;26 release",
+        "updated": "2026-04-27T07:31:17.148-07:00",
+        "url": "https://android-developers.googleblog.com/2026/04/jetpack-compose-april-2026-updates.html",
+        "sourceUrl": "https://android-developers.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Streamline User Journeys with Verified Email via Credential Manager",
+        "updated": "2026-04-27T07:29:15.403-07:00",
+        "url": "https://android-developers.googleblog.com/2026/04/streamline-auth-credential-manager-verified-email.html",
+        "sourceUrl": "https://android-developers.googleblog.com/feeds/posts/default"
+      },
+      {
+        "title": "Level up your development with Planning Mode and Next Edit Prediction in Android Studio Panda 4",
+        "updated": "2026-04-21T09:55:50.265-07:00",
+        "url": "https://android-developers.googleblog.com/2026/04/android-studio-panda-4-planning-mode-next-edit-prediction.html",
+        "sourceUrl": "https://android-developers.googleblog.com/feeds/posts/default"
+      }
+    ],
+    "health": [
+      {
+        "name": "Chrome Releases RSS",
+        "kind": "atom",
+        "url": "https://chromereleases.googleblog.com/feeds/posts/default",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.609Z"
+      },
+      {
+        "name": "Android Developers RSS",
+        "kind": "atom",
+        "url": "https://android-developers.googleblog.com/feeds/posts/default",
+        "ok": true,
+        "status": 200,
+        "message": "OK",
+        "checkedAt": "2026-05-01T10:54:47.609Z"
+      }
+    ]
+  },
+  "health": [
+    {
+      "name": "Chromium Dash Windows",
+      "kind": "json",
+      "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Windows",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.072Z"
+    },
+    {
+      "name": "VersionHistory Windows",
+      "kind": "json",
+      "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/win/channels/stable/versions",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.073Z"
+    },
+    {
+      "name": "Chromium Dash macOS",
+      "kind": "json",
+      "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Mac",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.414Z"
+    },
+    {
+      "name": "VersionHistory macOS",
+      "kind": "json",
+      "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/mac/channels/stable/versions",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.414Z"
+    },
+    {
+      "name": "Chromium Dash Linux",
+      "kind": "json",
+      "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Linux",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.775Z"
+    },
+    {
+      "name": "VersionHistory Linux",
+      "kind": "json",
+      "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/linux/channels/stable/versions",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.775Z"
+    },
+    {
+      "name": "Chromium Dash Android",
+      "kind": "json",
+      "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=Android",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.199Z"
+    },
+    {
+      "name": "VersionHistory Android",
+      "kind": "json",
+      "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/android/channels/stable/versions",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.199Z"
+    },
+    {
+      "name": "Chromium Dash iOS",
+      "kind": "json",
+      "url": "https://chromiumdash.appspot.com/fetch_releases?channel=Stable&num=8&platform=iOS",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.579Z"
+    },
+    {
+      "name": "VersionHistory iOS",
+      "kind": "json",
+      "url": "https://versionhistory.googleapis.com/v1/chrome/platforms/ios/channels/stable/versions",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.579Z"
+    },
+    {
+      "name": "ChromeOS serving builds",
+      "kind": "json",
+      "url": "https://chromiumdash.appspot.com/cros/fetch_serving_builds",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.413Z"
+    },
+    {
+      "name": "Pixel OTA page",
+      "kind": "html",
+      "url": "https://developers.google.com/android/ota",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.581Z"
+    },
+    {
+      "name": "Pixel factory images page",
+      "kind": "html",
+      "url": "https://developers.google.com/android/images",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.581Z"
+    },
+    {
+      "name": "Android Security Bulletin",
+      "kind": "html",
+      "url": "https://source.android.com/docs/security/bulletin/asb-overview?hl=en",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.581Z"
+    },
+    {
+      "name": "Android SDK repository XML",
+      "kind": "xml",
+      "url": "https://dl.google.com/android/repository/repository2-1.xml",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:46.860Z"
+    },
+    {
+      "name": "Chrome Releases RSS",
+      "kind": "atom",
+      "url": "https://chromereleases.googleblog.com/feeds/posts/default",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.609Z"
+    },
+    {
+      "name": "Android Developers RSS",
+      "kind": "atom",
+      "url": "https://android-developers.googleblog.com/feeds/posts/default",
+      "ok": true,
+      "status": 200,
+      "message": "OK",
+      "checkedAt": "2026-05-01T10:54:47.609Z"
+    }
+  ]
+}
