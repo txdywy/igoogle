@@ -469,6 +469,84 @@ code {
   background: var(--surface);
 }
 
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--surface-2) 25%, #e8ece8 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-title {
+  height: 46px;
+  width: 60%;
+  margin-bottom: 16px;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.skeleton-card {
+  height: 100px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #121513;
+    --surface: #1a1d1b;
+    --surface-2: #222623;
+    --ink: #e3e8e4;
+    --muted: #8a958d;
+    --line: #2e332f;
+    --green: #34a86e;
+    --green-bg: #0f2a1c;
+    --amber: #e0a030;
+    --amber-bg: #2a2008;
+    --blue: #5b9fd4;
+    --blue-bg: #0f1f30;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .topbar {
+    background: rgba(18, 21, 19, 0.88);
+    border-bottom-color: rgba(46, 51, 47, 0.8);
+  }
+
+  .panel-head {
+    background: linear-gradient(180deg, var(--surface), #181b19);
+  }
+
+  tbody tr:hover {
+    background: #1e211f;
+  }
+
+  .intro aside {
+    background: #0a0c0b;
+  }
+
+  .chip.muted {
+    background: #222623;
+    color: #8a958d;
+  }
+
+  .fingerprint {
+    background: #171a18;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface-2) 25%, #2a2e2b 50%, var(--surface-2) 75%);
+    background-size: 200% 100%;
+  }
+}
+
 @media (max-width: 1040px) {
   .topbar,
   .intro,

@@ -73,34 +73,41 @@ function statusFrom(result, name, kind) {
 }
 
 async function collectChrome() {
-  const rows = [];
-  const health = [];
-  for (const [apiPlatform, dashPlatform, label] of chromePlatforms) {
-    const dashUrl = `${sources.chromiumDash}${encodeURIComponent(dashPlatform)}`;
-    const vhUrl = sources.chromeVersionHistory.replace("{platform}", apiPlatform);
-    const [dash, history] = await Promise.all([fetchJson(dashUrl), fetchJson(vhUrl)]);
-    health.push(statusFrom(dash, `Chromium Dash ${label}`, "json"));
-    health.push(statusFrom(history, `VersionHistory ${label}`, "json"));
-    const latest = dash.ok ? dash.json?.[0] : null;
-    const latestHistory = history.ok ? history.json?.versions?.[0] : null;
-    rows.push({
-      platform: label,
-      channel: "Stable",
-      version: latest?.version ?? latestHistory?.version ?? "unknown",
-      previousVersion: latest?.previous_version ?? null,
-      milestone: latest?.milestone ?? null,
-      branchPosition: latest?.chromium_main_branch_position ?? null,
-      publishedAt: latest?.time ? new Date(latest.time).toISOString() : null,
-      corroboratedByVersionHistory:
-        Boolean(latest?.version && latestHistory?.version) &&
-        latest.version === latestHistory.version,
-      sourceUrl: dashUrl
-    });
-  }
-  return { rows, health };
+  const results = await Promise.all(
+    chromePlatforms.map(async ([apiPlatform, dashPlatform, label]) => {
+      const dashUrl = `${sources.chromiumDash}${encodeURIComponent(dashPlatform)}`;
+      const vhUrl = sources.chromeVersionHistory.replace("{platform}", apiPlatform);
+      const [dash, history] = await Promise.all([fetchJson(dashUrl), fetchJson(vhUrl)]);
+      const latest = dash.ok ? dash.json?.[0] : null;
+      const latestHistory = history.ok ? history.json?.versions?.[0] : null;
+      return {
+        health: [
+          statusFrom(dash, `Chromium Dash ${label}`, "json"),
+          statusFrom(history, `VersionHistory ${label}`, "json")
+        ],
+        row: {
+          platform: label,
+          channel: "Stable",
+          version: latest?.version ?? latestHistory?.version ?? "unknown",
+          previousVersion: latest?.previous_version ?? null,
+          milestone: latest?.milestone ?? null,
+          branchPosition: latest?.chromium_main_branch_position ?? null,
+          publishedAt: latest?.time ? new Date(latest.time).toISOString() : null,
+          corroboratedByVersionHistory:
+            Boolean(latest?.version && latestHistory?.version) &&
+            latest.version === latestHistory.version,
+          sourceUrl: dashUrl
+        }
+      };
+    })
+  );
+  return {
+    rows: results.map((r) => r.row),
+    health: results.flatMap((r) => r.health)
+  };
 }
 
-function pickChromeOsRows(builds) {
+export function pickChromeOsRows(builds) {
   return Object.entries(builds ?? {})
     .filter(([, item]) => item.servingStable?.version)
     .map(([board, item]) => ({
@@ -149,7 +156,7 @@ function stripHtmlText(value) {
   return value.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function extractSecurityBulletins(html) {
+export function extractSecurityBulletins(html) {
   const rows = [];
   const rowPattern = /<tr>([\s\S]*?)<\/tr>/g;
   for (const match of html.matchAll(rowPattern)) {
@@ -238,7 +245,7 @@ function revision(block) {
   return parts.join(".") || "unknown";
 }
 
-function extractSdkPackages(xml) {
+export function extractSdkPackages(xml) {
   const targets = [
     /^platform-tools$/,
     /^cmdline-tools;latest$/,

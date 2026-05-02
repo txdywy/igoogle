@@ -20,13 +20,13 @@ const fmt = new Intl.DateTimeFormat("zh-CN", {
   timeStyle: "short"
 });
 
-function formatDate(value) {
+export function formatDate(value) {
   if (!value) return "未知";
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? value : fmt.format(date);
 }
 
-function age(value) {
+export function age(value) {
   if (!value) return "未知";
   const ms = Date.now() - new Date(value).getTime();
   if (Number.isNaN(ms)) return "未知";
@@ -41,7 +41,7 @@ function healthClass(ok) {
   return ok ? "ok" : "warn";
 }
 
-function escapeHtml(value) {
+export function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -50,7 +50,7 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function safeUrl(value) {
+export function safeUrl(value) {
   try {
     const base = globalThis.location?.href ?? "https://example.invalid/";
     const url = new URL(value, base);
@@ -68,9 +68,9 @@ function metricCard(label, value, detail, icon) {
     <article class="metric">
       <div class="metric-icon">${icons[icon]}</div>
       <div>
-        <span>${label}</span>
-        <strong>${value}</strong>
-        <p>${detail}</p>
+        <span>${escapeHtml(label)}</span>
+        <strong>${escapeHtml(value)}</strong>
+        <p>${escapeHtml(detail)}</p>
       </div>
     </article>
   `;
@@ -216,9 +216,9 @@ function render(data) {
       </section>
 
       <section class="metrics">
-        ${metricCard("Chrome Stable", escapeHtml(data.summary.latestChrome), "Chromium Dash + VersionHistory 双源", "box")}
-        ${metricCard("ChromeOS boards", escapeHtml(data.summary.chromeOsBoards), "Serving builds matrix", "pulse")}
-        ${metricCard("Android SPL", escapeHtml(data.summary.latestAndroidPatch), "Android Security Bulletin", "shield")}
+        ${metricCard("Chrome Stable", data.summary.latestChrome, "Chromium Dash + VersionHistory 双源", "box")}
+        ${metricCard("ChromeOS boards", data.summary.chromeOsBoards, "Serving builds matrix", "pulse")}
+        ${metricCard("Android SPL", data.summary.latestAndroidPatch, "Android Security Bulletin", "shield")}
       </section>
 
       <section class="layout">
@@ -303,7 +303,7 @@ function render(data) {
 
 async function boot() {
   try {
-    const response = await fetch(dataUrl, { cache: "no-store" });
+    const response = await fetch(dataUrl);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     render(await response.json());
   } catch (error) {
