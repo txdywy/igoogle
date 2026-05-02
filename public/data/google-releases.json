@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-01T10:58:22.014Z",
+  "generatedAt": "2026-05-01T13:17:27.083Z",
   "summary": {
     "healthySources": 17,
     "totalSources": 17,
@@ -85,7 +85,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:18.462Z"
+        "checkedAt": "2026-05-01T13:17:24.263Z"
       },
       {
         "name": "VersionHistory Windows",
@@ -94,7 +94,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:18.462Z"
+        "checkedAt": "2026-05-01T13:17:24.263Z"
       },
       {
         "name": "Chromium Dash macOS",
@@ -103,7 +103,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.133Z"
+        "checkedAt": "2026-05-01T13:17:24.617Z"
       },
       {
         "name": "VersionHistory macOS",
@@ -112,7 +112,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.133Z"
+        "checkedAt": "2026-05-01T13:17:24.617Z"
       },
       {
         "name": "Chromium Dash Linux",
@@ -121,7 +121,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.879Z"
+        "checkedAt": "2026-05-01T13:17:25.045Z"
       },
       {
         "name": "VersionHistory Linux",
@@ -130,7 +130,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.879Z"
+        "checkedAt": "2026-05-01T13:17:25.045Z"
       },
       {
         "name": "Chromium Dash Android",
@@ -139,7 +139,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:21.476Z"
+        "checkedAt": "2026-05-01T13:17:26.663Z"
       },
       {
         "name": "VersionHistory Android",
@@ -148,7 +148,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:21.476Z"
+        "checkedAt": "2026-05-01T13:17:26.663Z"
       },
       {
         "name": "Chromium Dash iOS",
@@ -157,7 +157,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:22.014Z"
+        "checkedAt": "2026-05-01T13:17:27.083Z"
       },
       {
         "name": "VersionHistory iOS",
@@ -166,7 +166,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:22.014Z"
+        "checkedAt": "2026-05-01T13:17:27.083Z"
       }
     ]
   },
@@ -204,7 +204,7 @@
       },
       {
         "board": "kip",
-        "brand": "HP Chromebook 14 G4",
+        "brand": "HP Chromebook 11 G3/G4/G4 EE",
         "formFactor": "Chromebook - Clamshell",
         "aue": true,
         "milestone": "M36",
@@ -214,7 +214,7 @@
       },
       {
         "board": "enguarde",
-        "brand": "eduGear Chromebook R",
+        "brand": "Edxis Education Chromebook (NL6)",
         "formFactor": "Chromebook - Clamshell",
         "aue": true,
         "milestone": "M35",
@@ -224,7 +224,7 @@
       },
       {
         "board": "expresso",
-        "brand": "HEXA Chromebook Pi",
+        "brand": "Edxis Chromebook",
         "formFactor": "Chromebook - Clamshell",
         "aue": true,
         "milestone": "M36",
@@ -234,7 +234,7 @@
       },
       {
         "board": "gnawty",
-        "brand": "Acer Chromebook 11 (CB3-131, C735)",
+        "brand": "Acer Chromebook 11 (CB3-111, C730, C730E)",
         "formFactor": "Chromebook - Clamshell",
         "aue": true,
         "milestone": "M36",
@@ -362,7 +362,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:18.768Z"
+        "checkedAt": "2026-05-01T13:17:24.538Z"
       }
     ]
   },
@@ -371,18 +371,18 @@
       {
         "name": "Pixel OTA images",
         "url": "https://developers.google.com/android/ota",
-        "title": "Полные OTA-образы для устройств Nexus и Pixel &nbsp;|&nbsp; Google Play services &nbsp;|&nbsp; Google for Developers",
+        "title": "รูปภาพ OTA แบบเต็มสำหรับอุปกรณ์ Nexus และ Pixel &nbsp;|&nbsp; Google Play services &nbsp;|&nbsp; Google for Developers",
         "lastUpdated": null,
-        "sha256": "15cea0eb2846de3d",
-        "bytes": 70066
+        "sha256": "347c02029bfd47ee",
+        "bytes": 68681
       },
       {
         "name": "Pixel factory images",
         "url": "https://developers.google.com/android/images",
-        "title": "Imagens de fábrica de dispositivos Nexus e Pixel &nbsp;|&nbsp; Google Play services &nbsp;|&nbsp; Google for Developers",
+        "title": "รูปภาพจากโรงงานสำหรับอุปกรณ์ Nexus และ Pixel &nbsp;|&nbsp; Google Play services &nbsp;|&nbsp; Google for Developers",
         "lastUpdated": null,
-        "sha256": "9872e73baae424d3",
-        "bytes": 72443
+        "sha256": "d77d8ba3a7221237",
+        "bytes": 71319
       }
     ],
     "securityBulletins": [
@@ -467,7 +467,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.245Z"
+        "checkedAt": "2026-05-01T13:17:25.709Z"
       },
       {
         "name": "Pixel factory images page",
@@ -476,7 +476,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.245Z"
+        "checkedAt": "2026-05-01T13:17:25.709Z"
       },
       {
         "name": "Android Security Bulletin",
@@ -485,7 +485,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.245Z"
+        "checkedAt": "2026-05-01T13:17:25.709Z"
       }
     ]
   },
@@ -612,7 +612,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:18.525Z"
+        "checkedAt": "2026-05-01T13:17:24.843Z"
       }
     ]
   },
@@ -621,49 +621,49 @@
       {
         "title": "Chrome Dev for Android Update",
         "updated": "2026-04-30T08:43:32.344-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/5726371225085010172/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/chrome-dev-for-android-update_01429807.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
         "title": "Chrome Dev for Desktop Update",
         "updated": "2026-04-30T07:58:33.185-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/844265524333782933/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/chrome-dev-for-desktop-update_0746892774.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
         "title": "Long Term Support Channel Update for ChromeOS",
         "updated": "2026-04-29T14:04:47.225-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/6404778624341518236/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/long-term-support-channel-update-for_29.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
         "title": "Early Stable Update for Desktop",
         "updated": "2026-04-29T11:15:41.628-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/6322477671825456857/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/early-stable-update-for-desktop_29.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
         "title": "Chrome Beta for iOS Update",
         "updated": "2026-04-29T11:13:33.500-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/8334461638911627570/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/chrome-beta-for-ios-update_0285487381.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
         "title": "Chrome Stable for iOS Update",
         "updated": "2026-04-29T11:13:32.531-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/1132862843043349772/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/chrome-stable-for-ios-update_01547051062.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
         "title": "Chrome for Android Update",
         "updated": "2026-04-29T10:23:41.950-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/1957922317859965731/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/chrome-for-android-update_29.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
         "title": "Chrome Beta for Desktop Update",
         "updated": "2026-04-29T09:43:33.292-07:00",
-        "url": "http://chromereleases.googleblog.com/feeds/3973644534834953083/comments/default",
+        "url": "http://chromereleases.googleblog.com/2026/04/chrome-beta-for-desktop-update_0958205502.html",
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default"
       },
       {
@@ -699,7 +699,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.494Z"
+        "checkedAt": "2026-05-01T13:17:25.928Z"
       },
       {
         "name": "Android Developers RSS",
@@ -708,7 +708,7 @@
         "ok": true,
         "status": 200,
         "message": "OK",
-        "checkedAt": "2026-05-01T10:58:19.494Z"
+        "checkedAt": "2026-05-01T13:17:25.928Z"
       }
     ]
   },
@@ -720,7 +720,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:18.462Z"
+      "checkedAt": "2026-05-01T13:17:24.263Z"
     },
     {
       "name": "VersionHistory Windows",
@@ -729,7 +729,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:18.462Z"
+      "checkedAt": "2026-05-01T13:17:24.263Z"
     },
     {
       "name": "Chromium Dash macOS",
@@ -738,7 +738,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.133Z"
+      "checkedAt": "2026-05-01T13:17:24.617Z"
     },
     {
       "name": "VersionHistory macOS",
@@ -747,7 +747,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.133Z"
+      "checkedAt": "2026-05-01T13:17:24.617Z"
     },
     {
       "name": "Chromium Dash Linux",
@@ -756,7 +756,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.879Z"
+      "checkedAt": "2026-05-01T13:17:25.045Z"
     },
     {
       "name": "VersionHistory Linux",
@@ -765,7 +765,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.879Z"
+      "checkedAt": "2026-05-01T13:17:25.045Z"
     },
     {
       "name": "Chromium Dash Android",
@@ -774,7 +774,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:21.476Z"
+      "checkedAt": "2026-05-01T13:17:26.663Z"
     },
     {
       "name": "VersionHistory Android",
@@ -783,7 +783,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:21.476Z"
+      "checkedAt": "2026-05-01T13:17:26.663Z"
     },
     {
       "name": "Chromium Dash iOS",
@@ -792,7 +792,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:22.014Z"
+      "checkedAt": "2026-05-01T13:17:27.083Z"
     },
     {
       "name": "VersionHistory iOS",
@@ -801,7 +801,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:22.014Z"
+      "checkedAt": "2026-05-01T13:17:27.083Z"
     },
     {
       "name": "ChromeOS serving builds",
@@ -810,7 +810,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:18.768Z"
+      "checkedAt": "2026-05-01T13:17:24.538Z"
     },
     {
       "name": "Pixel OTA page",
@@ -819,7 +819,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.245Z"
+      "checkedAt": "2026-05-01T13:17:25.709Z"
     },
     {
       "name": "Pixel factory images page",
@@ -828,7 +828,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.245Z"
+      "checkedAt": "2026-05-01T13:17:25.709Z"
     },
     {
       "name": "Android Security Bulletin",
@@ -837,7 +837,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.245Z"
+      "checkedAt": "2026-05-01T13:17:25.709Z"
     },
     {
       "name": "Android SDK repository XML",
@@ -846,7 +846,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:18.525Z"
+      "checkedAt": "2026-05-01T13:17:24.843Z"
     },
     {
       "name": "Chrome Releases RSS",
@@ -855,7 +855,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.494Z"
+      "checkedAt": "2026-05-01T13:17:25.928Z"
     },
     {
       "name": "Android Developers RSS",
@@ -864,7 +864,7 @@
       "ok": true,
       "status": 200,
       "message": "OK",
-      "checkedAt": "2026-05-01T10:58:19.494Z"
+      "checkedAt": "2026-05-01T13:17:25.928Z"
     }
   ]
 }

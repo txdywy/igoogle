@@ -2,3 +2,7 @@ node_modules/
 dist/
 qa/
 .DS_Store
+.claude/
+.omc/
+.playwright-mcp/
+.serena/

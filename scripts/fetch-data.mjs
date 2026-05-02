@@ -145,6 +145,10 @@ function extractMeta(html) {
   };
 }
 
+function stripHtmlText(value) {
+  return value.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
 function extractSecurityBulletins(html) {
   const rows = [];
   const rowPattern = /<tr>([\s\S]*?)<\/tr>/g;
@@ -153,11 +157,8 @@ function extractSecurityBulletins(html) {
       (cell) => cell[1]
     );
     if (cells.length < 4) continue;
-    const bulletin = cells[0].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-    const publishedDate = cells[2]
-      .replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
+    const bulletin = stripHtmlText(cells[0]);
+    const publishedDate = stripHtmlText(cells[2]);
     const patchLevels = [
       ...cells[3].matchAll(/\b20\d{2}-\d{2}-\d{2}\b/g)
     ].map((level) => level[0]);
@@ -203,6 +204,33 @@ async function collectAndroidPages() {
   };
 }
 
+function tagAttributes(tag) {
+  return Object.fromEntries(
+    [...tag.matchAll(/([\w:-]+)=(["'])(.*?)\2/g)].map((match) => [match[1], match[3]])
+  );
+}
+
+function entryLink(block, sourceUrl) {
+  const links = [...block.matchAll(/<link\b[^>]*>/g)].map((match) => tagAttributes(match[0]));
+  const alternate = links.find(
+    (link) => link.rel === "alternate" && (!link.type || link.type === "text/html") && link.href
+  );
+  return alternate?.href ?? links.find((link) => link.href)?.href ?? sourceUrl;
+}
+
+function sdkPackagePriority(row) {
+  if (row.path === "platform-tools") return 0;
+  if (row.path === "cmdline-tools;latest") return 1;
+  if (row.path === "emulator") return 2;
+  if (row.path.startsWith("platforms;")) return 3;
+  if (row.path.startsWith("build-tools;")) return 4;
+  return 9;
+}
+
+function sdkPackageNumber(row) {
+  return Number(row.path.match(/(?:android-|build-tools;)(\d+)/)?.[1] ?? -1);
+}
+
 function revision(block) {
   const parts = ["major", "minor", "micro", "preview"]
     .map((key) => block.match(new RegExp(`<${key}>([^<]+)</${key}>`))?.[1])
@@ -239,19 +267,11 @@ function extractSdkPackages(xml) {
   }
   return rows
     .sort((a, b) => {
-      const priority = (row) => {
-        if (row.path === "platform-tools") return 0;
-        if (row.path === "cmdline-tools;latest") return 1;
-        if (row.path === "emulator") return 2;
-        if (row.path.startsWith("platforms;")) return 3;
-        if (row.path.startsWith("build-tools;")) return 4;
-        return 9;
-      };
-      const pathNumber = (row) =>
-        Number(row.path.match(/(?:android-|build-tools;)(\d+)/)?.[1] ?? -1);
-      if (priority(a) !== priority(b)) return priority(a) - priority(b);
+      const priorityA = sdkPackagePriority(a);
+      const priorityB = sdkPackagePriority(b);
+      if (priorityA !== priorityB) return priorityA - priorityB;
       if (a.path.startsWith("platforms;") || a.path.startsWith("build-tools;")) {
-        return pathNumber(b) - pathNumber(a);
+        return sdkPackageNumber(b) - sdkPackageNumber(a);
       }
       return b.revision.localeCompare(a.revision, undefined, { numeric: true });
     })
@@ -266,7 +286,7 @@ async function collectSdk() {
   };
 }
 
-function extractFeedEntries(xml, sourceUrl) {
+export function extractFeedEntries(xml, sourceUrl) {
   const entries = [];
   for (const match of xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)) {
     const block = match[1];
@@ -278,10 +298,7 @@ function extractFeedEntries(xml, sourceUrl) {
         block.match(/<updated>([^<]+)<\/updated>/)?.[1] ??
         block.match(/<published>([^<]+)<\/published>/)?.[1] ??
         null,
-      url:
-        block.match(/<link[^>]+rel=['"]alternate['"][^>]+href=['"]([^'"]+)/)?.[1] ??
-        block.match(/<link[^>]+href=['"]([^'"]+)/)?.[1] ??
-        sourceUrl,
+      url: entryLink(block, sourceUrl),
       sourceUrl
     });
     if (entries.length >= 8) break;
@@ -355,7 +372,9 @@ async function main() {
   console.log(`Wrote ${OUT.pathname}`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

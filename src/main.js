@@ -1,6 +1,4 @@
-import "./styles.css";
-
-const dataUrl = `${import.meta.env.BASE_URL}data/google-releases.json`;
+const dataUrl = `${import.meta.env?.BASE_URL ?? "/"}data/google-releases.json`;
 
 const icons = {
   pulse:
@@ -43,8 +41,26 @@ function healthClass(ok) {
   return ok ? "ok" : "warn";
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function safeUrl(value) {
+  try {
+    const base = globalThis.location?.href ?? "https://example.invalid/";
+    const url = new URL(value, base);
+    if (url.protocol === "http:" || url.protocol === "https:") return url.href;
+  } catch {}
+  return "#";
+}
+
 function sourceLink(url, label = "source") {
-  return `<a href="${url}" target="_blank" rel="noreferrer">${label}</a>`;
+  return `<a href="${escapeHtml(safeUrl(url))}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
 }
 
 function metricCard(label, value, detail, icon) {
@@ -60,15 +76,15 @@ function metricCard(label, value, detail, icon) {
   `;
 }
 
-function chromeRows(rows) {
+export function chromeRows(rows) {
   return rows
     .map(
       (row) => `
         <tr>
-          <td><strong>${row.platform}</strong></td>
-          <td><span class="chip stable">${row.channel}</span></td>
-          <td class="mono">${row.version}</td>
-          <td>${row.milestone ? `M${row.milestone}` : "未知"}</td>
+          <td><strong>${escapeHtml(row.platform)}</strong></td>
+          <td><span class="chip stable">${escapeHtml(row.channel)}</span></td>
+          <td class="mono">${escapeHtml(row.version)}</td>
+          <td>${row.milestone ? `M${escapeHtml(row.milestone)}` : "未知"}</td>
           <td>${row.corroboratedByVersionHistory ? "已交叉校验" : "Dash 优先"}</td>
           <td>${sourceLink(row.sourceUrl, "Chromium Dash")}</td>
         </tr>
@@ -82,10 +98,10 @@ function chromeOsRows(rows) {
     .map(
       (row) => `
         <tr>
-          <td><strong>${row.board}</strong><small>${row.brand}</small></td>
-          <td>${row.formFactor}</td>
-          <td class="mono">${row.osVersion}</td>
-          <td class="mono">${row.chromeVersion}</td>
+          <td><strong>${escapeHtml(row.board)}</strong><small>${escapeHtml(row.brand)}</small></td>
+          <td>${escapeHtml(row.formFactor)}</td>
+          <td class="mono">${escapeHtml(row.osVersion)}</td>
+          <td class="mono">${escapeHtml(row.chromeVersion)}</td>
           <td><span class="chip ${row.aue ? "muted" : "ok"}">${row.aue ? "AUE" : "Active"}</span></td>
         </tr>
       `
@@ -98,9 +114,9 @@ function sdkRows(rows) {
     .map(
       (row) => `
         <tr>
-          <td><strong>${row.displayName}</strong><small>${row.path}</small></td>
-          <td class="mono">${row.revision}</td>
-          <td><span class="chip ${row.channel === "Stable" ? "stable" : "beta"}">${row.channel}</span></td>
+          <td><strong>${escapeHtml(row.displayName)}</strong><small>${escapeHtml(row.path)}</small></td>
+          <td class="mono">${escapeHtml(row.revision)}</td>
+          <td><span class="chip ${row.channel === "Stable" ? "stable" : "beta"}">${escapeHtml(row.channel)}</span></td>
           <td>${sourceLink(row.sourceUrl, "repository2-1.xml")}</td>
         </tr>
       `
@@ -113,9 +129,9 @@ function securityRows(rows) {
     .map(
       (row) => `
         <tr>
-          <td><strong>${row.bulletin}</strong></td>
-          <td>${row.publishedDate}</td>
-          <td>${row.patchLevels.map((level) => `<span class="chip ok">${level}</span>`).join(" ")}</td>
+          <td><strong>${escapeHtml(row.bulletin)}</strong></td>
+          <td>${escapeHtml(row.publishedDate)}</td>
+          <td>${row.patchLevels.map((level) => `<span class="chip ok">${escapeHtml(level)}</span>`).join(" ")}</td>
           <td>${sourceLink(row.sourceUrl, "AOSP")}</td>
         </tr>
       `
@@ -129,10 +145,10 @@ function pageFingerprints(items) {
       (item) => `
         <article class="fingerprint">
           <div>
-            <strong>${item.name}</strong>
-            <span>${item.lastUpdated ? `Last updated ${item.lastUpdated}` : "监听页面指纹"}</span>
+            <strong>${escapeHtml(item.name)}</strong>
+            <span>${item.lastUpdated ? `Last updated ${escapeHtml(item.lastUpdated)}` : "监听页面指纹"}</span>
           </div>
-          <code>${item.sha256 ?? item.error ?? "unavailable"}</code>
+          <code>${escapeHtml(item.sha256 ?? item.error ?? "unavailable")}</code>
           ${sourceLink(item.url, "open")}
         </article>
       `
@@ -140,12 +156,12 @@ function pageFingerprints(items) {
     .join("");
 }
 
-function feedRows(rows) {
+export function feedRows(rows) {
   return rows
     .map(
       (row) => `
         <li>
-          <a href="${row.url}" target="_blank" rel="noreferrer">${row.title}</a>
+          <a href="${escapeHtml(safeUrl(row.url))}" target="_blank" rel="noreferrer">${escapeHtml(row.title)}</a>
           <span>${formatDate(row.updated)}</span>
         </li>
       `
@@ -160,8 +176,8 @@ function healthRows(rows) {
         <li>
           <span class="dot ${healthClass(row.ok)}"></span>
           <div>
-            <strong>${row.name}</strong>
-            <small>${row.kind.toUpperCase()} · ${row.message}</small>
+            <strong>${escapeHtml(row.name)}</strong>
+            <small>${escapeHtml(row.kind.toUpperCase())} · ${escapeHtml(row.message)}</small>
           </div>
           ${sourceLink(row.url, "↗")}
         </li>
@@ -195,14 +211,14 @@ function render(data) {
         <aside>
           <span>Last generated</span>
           <strong>${formatDate(data.generatedAt)}</strong>
-          <p>${age(data.generatedAt)} · ${data.summary.healthySources}/${data.summary.totalSources} sources healthy</p>
+          <p>${age(data.generatedAt)} · ${escapeHtml(data.summary.healthySources)}/${escapeHtml(data.summary.totalSources)} sources healthy</p>
         </aside>
       </section>
 
       <section class="metrics">
-        ${metricCard("Chrome Stable", data.summary.latestChrome, "Chromium Dash + VersionHistory 双源", "box")}
-        ${metricCard("ChromeOS boards", data.summary.chromeOsBoards, "Serving builds matrix", "pulse")}
-        ${metricCard("Android SPL", data.summary.latestAndroidPatch, "Android Security Bulletin", "shield")}
+        ${metricCard("Chrome Stable", escapeHtml(data.summary.latestChrome), "Chromium Dash + VersionHistory 双源", "box")}
+        ${metricCard("ChromeOS boards", escapeHtml(data.summary.chromeOsBoards), "Serving builds matrix", "pulse")}
+        ${metricCard("Android SPL", escapeHtml(data.summary.latestAndroidPatch), "Android Security Bulletin", "shield")}
       </section>
 
       <section class="layout">
@@ -228,7 +244,7 @@ function render(data) {
                 <h2>ChromeOS Serving Builds</h2>
                 <p>展示仍在服务的代表性 board，保留 AUE 状态和 Stable/Beta 版本对比。</p>
               </div>
-              <span class="count">${data.chromeOs.totalBoards} boards</span>
+              <span class="count">${escapeHtml(data.chromeOs.totalBoards)} boards</span>
             </div>
             <div class="table-wrap">
               <table>
@@ -295,10 +311,12 @@ async function boot() {
       <main class="error-state">
         <h1>数据尚未生成</h1>
         <p>运行 <code>npm run fetch:data</code> 生成 <code>public/data/google-releases.json</code>。</p>
-        <pre>${error.message}</pre>
+        <pre>${escapeHtml(error.message)}</pre>
       </main>
     `;
   }
 }
 
-boot();
+if (typeof document !== "undefined") {
+  boot();
+}

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "fetch:data": "node scripts/fetch-data.mjs",
+    "test": "node --test \"test/*.test.mjs\"",
     "build": "npm run fetch:data && vite build",
+    "check": "npm test && npm run build",
     "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
