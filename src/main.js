@@ -2,17 +2,17 @@ const dataUrl = `${import.meta.env?.BASE_URL ?? "/"}data/google-releases.json`;
 
 const icons = {
   pulse:
-    '<svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>',
   box:
-    '<svg viewBox="0 0 24 24"><path d="m21 8-9-5-9 5 9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 8-9-5-9 5 9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>',
   shield:
-    '<svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 2.9 8.7 7 10 4.1-1.3 7-5.5 7-10V6l-7-3Z"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 2.9 8.7 7 10 4.1-1.3 7-5.5 7-10V6l-7-3Z"/></svg>',
   link:
-    '<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2A5 5 0 0 0 12 20.1l1.1-1.1"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2A5 5 0 0 0 12 20.1l1.1-1.1"/></svg>',
   clock:
-    '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   git:
-    '<svg viewBox="0 0 24 24"><path d="M15 6 9 18"/><path d="M9 6l6 12"/></svg>'
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6 9 18"/><path d="M9 6l6 12"/></svg>'
 };
 
 const fmt = new Intl.DateTimeFormat("zh-CN", {
@@ -59,8 +59,9 @@ export function safeUrl(value) {
   return "#";
 }
 
-function sourceLink(url, label = "source") {
-  return `<a href="${escapeHtml(safeUrl(url))}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
+function sourceLink(url, label = "source", ariaLabel) {
+  const aria = ariaLabel ? ` aria-label="${escapeHtml(ariaLabel)}"` : "";
+  return `<a href="${escapeHtml(safeUrl(url))}" target="_blank" rel="noreferrer"${aria}>${escapeHtml(label)}</a>`;
 }
 
 function metricCard(label, value, detail, icon) {
@@ -174,12 +175,12 @@ function healthRows(rows) {
     .map(
       (row) => `
         <li>
-          <span class="dot ${healthClass(row.ok)}"></span>
+          <span class="dot ${healthClass(row.ok)}" role="img" aria-label="${row.ok ? "正常" : "异常"}"></span>
           <div>
             <strong>${escapeHtml(row.name)}</strong>
             <small>${escapeHtml(row.kind.toUpperCase())} · ${escapeHtml(row.message)}</small>
           </div>
-          ${sourceLink(row.url, "↗")}
+          ${sourceLink(row.url, "↗", `打开 ${row.name} 来源`)}
         </li>
       `
     )
@@ -232,7 +233,7 @@ function render(data) {
             </div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>平台</th><th>通道</th><th>版本</th><th>里程碑</th><th>校验</th><th>源</th></tr></thead>
+                <thead><tr><th scope="col">平台</th><th scope="col">通道</th><th scope="col">版本</th><th scope="col">里程碑</th><th scope="col">校验</th><th scope="col">源</th></tr></thead>
                 <tbody>${chromeRows(data.chrome.rows)}</tbody>
               </table>
             </div>
@@ -248,7 +249,7 @@ function render(data) {
             </div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Board / 设备</th><th>形态</th><th>OS</th><th>Chrome</th><th>状态</th></tr></thead>
+                <thead><tr><th scope="col">Board / 设备</th><th scope="col">形态</th><th scope="col">OS</th><th scope="col">Chrome</th><th scope="col">状态</th></tr></thead>
                 <tbody>${chromeOsRows(data.chromeOs.rows)}</tbody>
               </table>
             </div>
@@ -264,7 +265,7 @@ function render(data) {
             <div class="fingerprints">${pageFingerprints(data.android.pageFingerprints)}</div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>公告</th><th>发布日期</th><th>补丁级别</th><th>源</th></tr></thead>
+                <thead><tr><th scope="col">公告</th><th scope="col">发布日期</th><th scope="col">补丁级别</th><th scope="col">源</th></tr></thead>
                 <tbody>${securityRows(data.android.securityBulletins)}</tbody>
               </table>
             </div>
@@ -279,7 +280,7 @@ function render(data) {
             </div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>包</th><th>版本</th><th>通道</th><th>源</th></tr></thead>
+                <thead><tr><th scope="col">包</th><th scope="col">版本</th><th scope="col">通道</th><th scope="col">源</th></tr></thead>
                 <tbody>${sdkRows(data.sdk.rows)}</tbody>
               </table>
             </div>

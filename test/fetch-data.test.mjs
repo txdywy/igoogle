@@ -5,7 +5,8 @@ import {
   extractFeedEntries,
   extractSecurityBulletins,
   extractSdkPackages,
-  pickChromeOsRows
+  pickChromeOsRows,
+  latestPatchLevel
 } from "../scripts/fetch-data.mjs";
 
 test("extractFeedEntries chooses alternate article links before feed links", () => {
@@ -161,4 +162,33 @@ test("pickChromeOsRows caps at 18 rows", () => {
     ])
   );
   assert.ok(pickChromeOsRows(builds).length <= 18);
+});
+
+test("pickChromeOsRows orders chromeVersion numerically, not lexically", () => {
+  const builds = {
+    "old": { servingStable: { version: "1.0", chromeVersion: "99" } },
+    "new": { servingStable: { version: "1.0", chromeVersion: "120" } }
+  };
+  const rows = pickChromeOsRows(builds);
+  assert.equal(rows[0].chromeVersion, "120");
+  assert.equal(rows[1].chromeVersion, "99");
+});
+
+// --- latestPatchLevel ---
+
+test("latestPatchLevel returns the highest SPL date regardless of order", () => {
+  const bulletins = [{ patchLevels: ["2026-05-01", "2026-05-05"] }];
+  assert.equal(latestPatchLevel(bulletins), "2026-05-05");
+});
+
+test("latestPatchLevel scans across all bulletins", () => {
+  const bulletins = [
+    { patchLevels: ["2026-05-05"] },
+    { patchLevels: ["2026-06-01"] }
+  ];
+  assert.equal(latestPatchLevel(bulletins), "2026-06-01");
+});
+
+test("latestPatchLevel returns unknown when empty", () => {
+  assert.equal(latestPatchLevel([]), "unknown");
 });

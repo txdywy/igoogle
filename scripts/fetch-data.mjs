@@ -124,7 +124,9 @@ export function pickChromeOsRows(builds) {
     }))
     .sort((a, b) => {
       if (a.aue !== b.aue) return Number(a.aue) - Number(b.aue);
-      return (b.chromeVersion ?? "").localeCompare(a.chromeVersion ?? "");
+      return (b.chromeVersion ?? "").localeCompare(a.chromeVersion ?? "", undefined, {
+        numeric: true
+      });
     })
     .slice(0, 18);
 }
@@ -181,6 +183,12 @@ export function extractSecurityBulletins(html) {
     if (rows.length >= 8) break;
   }
   return rows;
+}
+
+// Highest security patch level (ISO YYYY-MM-DD sorts chronologically) across bulletins.
+export function latestPatchLevel(bulletins) {
+  const levels = (bulletins ?? []).flatMap((b) => b.patchLevels ?? []);
+  return levels.length ? levels.reduce((a, b) => (b > a ? b : a)) : "unknown";
 }
 
 async function collectAndroidPages() {
@@ -363,7 +371,7 @@ async function main() {
         chrome.rows[0]?.version ??
         "unknown",
       latestAndroidPatch:
-        android.securityBulletins[0]?.patchLevels?.at(-1) ?? "unknown"
+        latestPatchLevel(android.securityBulletins) ?? "unknown"
     },
     sources,
     chrome,
