@@ -2,7 +2,10 @@ import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 
 const OUT = new URL("../public/data/google-releases.json", import.meta.url);
-const timeoutMs = 25_000;
+const TIMEOUT_MS = 25_000;
+const MAX_RETRIES = 2;
+const RETRY_DELAY_MS = 1000;
+const USER_AGENT = "google-release-radar/0.1 (+https://github.com/)";
 
 const sources = {
   chromiumDash:
@@ -28,14 +31,14 @@ const chromePlatforms = [
   ["ios", "iOS", "iOS"]
 ];
 
-async function fetchText(url) {
+async function fetchText(url, retries = MAX_RETRIES) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
     const res = await fetch(url, {
       signal: controller.signal,
       headers: {
-        "user-agent": "google-release-radar/0.1 (+https://github.com/)"
+        "user-agent": USER_AGENT
       }
     });
     const text = await res.text();
@@ -44,6 +47,10 @@ async function fetchText(url) {
     }
     return { ok: true, url, text, status: res.status };
   } catch (error) {
+    if (retries > 0 && error.name === "AbortError") {
+      await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+      return fetchText(url, retries - 1);
+    }
     return { ok: false, url, error: error.message };
   } finally {
     clearTimeout(timer);

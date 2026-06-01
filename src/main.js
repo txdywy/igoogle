@@ -1,5 +1,7 @@
 const dataUrl = `${import.meta.env?.BASE_URL ?? "/"}data/google-releases.json`;
 
+const UNKNOWN_LABEL = "未知";
+
 const icons = {
   pulse:
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>',
@@ -15,21 +17,23 @@ const icons = {
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6 9 18"/><path d="M9 6l6 12"/></svg>'
 };
 
-const fmt = new Intl.DateTimeFormat("zh-CN", {
+const chipClass = (value, stableValue) => value === stableValue ? "stable" : "beta";
+
+const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
   dateStyle: "medium",
   timeStyle: "short"
 });
 
 export function formatDate(value) {
-  if (!value) return "未知";
+  if (!value) return UNKNOWN_LABEL;
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? value : fmt.format(date);
+  return Number.isNaN(date.getTime()) ? value : dateFormatter.format(date);
 }
 
 export function age(value) {
-  if (!value) return "未知";
+  if (!value) return UNKNOWN_LABEL;
   const ms = Date.now() - new Date(value).getTime();
-  if (Number.isNaN(ms)) return "未知";
+  if (Number.isNaN(ms)) return UNKNOWN_LABEL;
   const minutes = Math.max(1, Math.round(ms / 60000));
   if (minutes < 60) return `${minutes} 分钟前`;
   const hours = Math.round(minutes / 60);
@@ -85,7 +89,7 @@ export function chromeRows(rows) {
           <td><strong>${escapeHtml(row.platform)}</strong></td>
           <td><span class="chip stable">${escapeHtml(row.channel)}</span></td>
           <td class="mono">${escapeHtml(row.version)}</td>
-          <td>${row.milestone ? `M${escapeHtml(row.milestone)}` : "未知"}</td>
+          <td>${row.milestone ? `M${escapeHtml(row.milestone)}` : UNKNOWN_LABEL}</td>
           <td>${row.corroboratedByVersionHistory ? "已交叉校验" : "Dash 优先"}</td>
           <td>${sourceLink(row.sourceUrl, "Chromium Dash")}</td>
         </tr>
@@ -117,7 +121,7 @@ function sdkRows(rows) {
         <tr>
           <td><strong>${escapeHtml(row.displayName)}</strong><small>${escapeHtml(row.path)}</small></td>
           <td class="mono">${escapeHtml(row.revision)}</td>
-          <td><span class="chip ${row.channel === "Stable" ? "stable" : "beta"}">${escapeHtml(row.channel)}</span></td>
+          <td><span class="chip ${chipClass(row.channel, "Stable")}">${escapeHtml(row.channel)}</span></td>
           <td>${sourceLink(row.sourceUrl, "repository2-1.xml")}</td>
         </tr>
       `

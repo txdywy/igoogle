@@ -33,6 +33,66 @@ test("feedRows escapes titles and unsafe URLs", () => {
   assert.doesNotMatch(html, /javascript:alert/);
 });
 
+test("chromeRows handles missing milestone", () => {
+  const html = chromeRows([
+    {
+      platform: "Windows",
+      channel: "Stable",
+      version: "120.0.0.0",
+      milestone: null,
+      corroboratedByVersionHistory: false,
+      sourceUrl: "https://example.com"
+    }
+  ]);
+
+  assert.match(html, /未知/);
+});
+
+test("chromeRows shows Dash priority when not corroborated", () => {
+  const html = chromeRows([
+    {
+      platform: "Windows",
+      channel: "Stable",
+      version: "120.0.0.0",
+      milestone: "120",
+      corroboratedByVersionHistory: false,
+      sourceUrl: "https://example.com"
+    }
+  ]);
+
+  assert.match(html, /Dash 优先/);
+});
+
+test("chromeRows shows corroborated when versions match", () => {
+  const html = chromeRows([
+    {
+      platform: "Windows",
+      channel: "Stable",
+      version: "120.0.0.0",
+      milestone: "120",
+      corroboratedByVersionHistory: true,
+      sourceUrl: "https://example.com"
+    }
+  ]);
+
+  assert.match(html, /已交叉校验/);
+});
+
+test("feedRows handles empty array", () => {
+  const html = feedRows([]);
+  assert.equal(html, "");
+});
+
+test("feedRows handles multiple entries", () => {
+  const html = feedRows([
+    { title: "Entry 1", url: "https://example.com/1", updated: "2026-01-01T00:00:00Z" },
+    { title: "Entry 2", url: "https://example.com/2", updated: "2026-01-02T00:00:00Z" }
+  ]);
+
+  assert.match(html, /Entry 1/);
+  assert.match(html, /Entry 2/);
+});
+
 // --- escapeHtml ---
 
 test("escapeHtml handles all special characters", () => {
@@ -46,6 +106,15 @@ test("escapeHtml handles null and undefined", () => {
 
 test("escapeHtml coerces numbers to string", () => {
   assert.equal(escapeHtml(42), "42");
+});
+
+test("escapeHtml handles empty string", () => {
+  assert.equal(escapeHtml(""), "");
+});
+
+test("escapeHtml handles boolean values", () => {
+  assert.equal(escapeHtml(true), "true");
+  assert.equal(escapeHtml(false), "false");
 });
 
 // --- safeUrl ---
@@ -76,6 +145,15 @@ test("safeUrl resolves empty string against base", () => {
   assert.match(result, /^https:\/\/example\.invalid\//);
 });
 
+test("safeUrl blocks vbscript: URIs", () => {
+  assert.equal(safeUrl("vbscript:alert(1)"), "#");
+});
+
+test("safeUrl handles URLs with special characters", () => {
+  const result = safeUrl("https://example.com/path?q=hello&lang=zh");
+  assert.match(result, /example\.com/);
+});
+
 // --- formatDate ---
 
 test("formatDate returns Chinese locale date", () => {
@@ -90,6 +168,14 @@ test("formatDate returns fallback for null", () => {
 
 test("formatDate returns fallback for invalid date string", () => {
   assert.equal(formatDate("not-a-date"), "not-a-date");
+});
+
+test("formatDate handles undefined", () => {
+  assert.equal(formatDate(undefined), "未知");
+});
+
+test("formatDate handles empty string", () => {
+  assert.equal(formatDate(""), "未知");
 });
 
 // --- age ---
@@ -115,4 +201,25 @@ test("age returns fallback for null", () => {
 
 test("age returns fallback for invalid date", () => {
   assert.equal(age("not-a-date"), "未知");
+});
+
+test("age returns fallback for undefined", () => {
+  assert.equal(age(undefined), "未知");
+});
+
+test("age handles very recent timestamps", () => {
+  const veryRecent = new Date(Date.now() - 1000).toISOString();
+  assert.match(age(veryRecent), /分钟前/);
+});
+
+test("age handles timestamps exactly 1 hour ago", () => {
+  const oneHourAgo = new Date(Date.now() - 3_600_000).toISOString();
+  const result = age(oneHourAgo);
+  assert.match(result, /小时前/);
+});
+
+test("age handles timestamps exactly 1 day ago", () => {
+  const oneDayAgo = new Date(Date.now() - 86_400_000).toISOString();
+  const result = age(oneDayAgo);
+  assert.match(result, /小时前|天前/);
 });
